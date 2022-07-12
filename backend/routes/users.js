@@ -1,28 +1,19 @@
 const router = require('express').Router();
-const { default: mongoose } = require('mongoose');
 let User = require("../models/user.models");
-const { MongoClient, ServerApiVersion } = require('mongodb');
 
-router.route('/').get(async (req,res) => {
+router.route('/').get( async(req,res) => {
 try {
-const uri = "mongodb+srv://admin-claire-murphy:DRo4pOC5XjBUWYXh@cluster0.1knex.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-await client.connect(err => {
-  const collection = client.db("test").collection("users");
   const newUser = User({
-    username: "clairemurphy",
-    password: "password"
-})
-newUser.save();
-
-  console.log("User Added!")
-  // perform actions on the collection object
-//   client.close();
+    username: "clairemuphy1",
+    password: "password12"
 });
-    // finding all the users in the database
+    await newUser.save()
 
-    res.send("Connected")
-} catch (err) {
+  console.log("User Added!");
+    res.send("User Added!");
+    
+}catch (err) {
+    console.log(err);
     res.status(400).json('Error' + err)
 
 }});

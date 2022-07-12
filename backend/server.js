@@ -3,35 +3,28 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
 const app = express();
 const port = process.env.PORT || 3000;
-
+////not sure what this does
 app.use(cors());
-//not sure what this does
 
 
 
-////////CONNECTING TO MONGODB
-//need to add uri to environment varibales. 
-///The database takes a long time to connect may need to do some async programming
-const uri = "mongodb+srv://admin-claire-murphy:DRo4pOC5XjBUWYXh@cluster0.1knex.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("users");
 
-  
-  console.log("Connected successfully")
-  // perform actions on the collection object
-//   client.close();
+////////CONNECTING TO MONGODB & MONGOOSE
+// need to add uri to environment varibales. 
+const uri = process.env.ATLAS_URI
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoDB database connection established successfully!")
 });
+////////////I still need to close mongoDB somewhere...
 
 
 
-///////
 
-///Router for /log-in path
+///Router for the root path
 const userRouter = require(__dirname + '/routes/users');
 app.use('/', userRouter);
 ////
