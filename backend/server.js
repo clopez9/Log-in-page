@@ -29,7 +29,6 @@ connection.once('open', () => {
 
 ///Router for /log-in path
 const userRouter = require(__dirname + '/routes/users');
-console.log(userRouter)
 app.use('/log-in', userRouter);
 ////
 
