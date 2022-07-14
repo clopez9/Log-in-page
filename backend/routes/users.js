@@ -25,10 +25,10 @@ router.route('/').post( async (req,res) => {
             password: req.body.password
         });
         //this function saves the users to our database
-        newUser.save();
+        await newUser.save();
         res.send("User added successfullly");
     } catch (err) {
-        res.status.json('Error' + err);
+        res.json('Error' + err);
     }
 });
     
