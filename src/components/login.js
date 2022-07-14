@@ -17,6 +17,7 @@ export default class Login extends Component {
    
     }
     onChangeUsername(e) {
+        console.log(e);
         this.setState({
             username: e.target.value
         });
@@ -28,17 +29,17 @@ export default class Login extends Component {
     }
     onSubmit(e) {
         //prevents submission of default values
-        console.log("submitted!")
         e.preventDefault();
+        console.log("submitted!")
         const user = {
             username: this.state.username,
             password: this.state.password
         }
         console.log(user);
-        axios.post('http://localhost:5000',user).then(res => console.log(res.data));
- 
-        }
-  
+        //sends a post request to the backend. This is how the frontend and backend are connected.
+        axios.post('http://localhost:5000',user).then(res => console.log(res.data)).catch(err => console.log(err));
+    }
+    //There is a part of the lifecycle of components on react. (Mounting-phase)
     componentDidMount() {
         this.setState({
             username: "",
@@ -46,6 +47,7 @@ export default class Login extends Component {
 
         });
     }
+    //This renders the front-end code
     render() {
         return (
 <form onSubmit = {this.onSubmit}>

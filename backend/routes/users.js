@@ -31,5 +31,13 @@ router.route('/').post( async (req,res) => {
         res.json('Error' + err);
     }
 });
+// router.route('/admin').post( async (req,res) => {
+//     try {
+//         console.log(req.body);
+
+//     } catch (err) {
+//         res.json('Error' + err);
+//     }
+// });
     
 module.exports = router;
