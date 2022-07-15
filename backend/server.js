@@ -30,8 +30,8 @@ const userRouter = require(__dirname + '/routes/users');
 app.use('/', userRouter);
 ////
 
-// const adminRouter = require(__dirname + '/routes/users');
-// app.use('/admin', adminRouter);
+const adminRouter = require(__dirname + '/routes/admin');
+app.use('/admin', adminRouter);
 
 app.listen(port, () => {
     console.log(`Server is runing on port: ${port}`);

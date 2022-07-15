@@ -7,6 +7,9 @@ export default class Admin extends Component {
         this.onChange = this.onChange.bind(this);
 
     }
+    onSubmit(e) {
+        
+    }
    
     onChange(e) {
         console.log(e);
@@ -15,14 +18,18 @@ export default class Admin extends Component {
         reader.onload = function(e) {
             // The file's text will be printed here
             console.log(e.target.result)
+            const csv = {
+                fileContent: e.target.result
+            }
+            axios.post('http://localhost:5000/admin', csv).then(res => console.log(res.data)).catch(err => console.log(err));
           };
         reader.readAsText(file)
-        // axios.post('http://localhost:5000/admin').then(res => console.log(res.data)).catch(err => console.log(err));
+       
         // console.log(e);
     }
     render () {
         return (
-            <form>
+            <form onSubmit = {this.onSubmit}>
             <div className="container">
                 <input onChange= {this.onChange}type="file"></input>
                 <button type="submit">Submit</button>

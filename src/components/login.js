@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import Admin from "./admin";
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -13,7 +14,6 @@ export default class Login extends Component {
          this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
    
     }
     onChangeUsername(e) {
@@ -47,6 +47,7 @@ export default class Login extends Component {
 
         });
     }
+   
     //This renders the front-end code
     render() {
         return (
