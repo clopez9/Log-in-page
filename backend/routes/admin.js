@@ -4,6 +4,7 @@ let Quiz = require("../models/quiz.models");
 router.route('/admin').post( async (req,res) => {
     try {
         console.log(req.body);
+        
 
     } catch (err) {
         res.json('Error' + err);

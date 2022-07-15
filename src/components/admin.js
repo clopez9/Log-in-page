@@ -4,28 +4,33 @@ import axios from 'axios';
 export default class Admin extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            fileContent: ""
+        }
         this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
     }
     onSubmit(e) {
+        e.preventDefault();
+        const csv = this.state.fileContent
+            axios.post('http://localhost:5000/admin', csv).then(res => console.log(res.data)).catch(err => console.log(err));
         
     }
    
     onChange(e) {
-        console.log(e);
         var file = e.target.files[0];
         var reader = new FileReader();
         reader.onload = function(e) {
             // The file's text will be printed here
-            console.log(e.target.result)
             const csv = {
                 fileContent: e.target.result
             }
-            axios.post('http://localhost:5000/admin', csv).then(res => console.log(res.data)).catch(err => console.log(err));
-          };
+            this.setState({
+                fileContent: csv
+            })
+          }.bind(this);
         reader.readAsText(file)
-       
-        // console.log(e);
     }
     render () {
         return (
