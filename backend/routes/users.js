@@ -3,15 +3,9 @@ let User = require("../models/user.models");
 
 router.route('/').get( async(req,res) => {
 try {
-  const newUser = User({
-    username: "clairemuphy1",
-    password: "password12"
-});
-    await newUser.save()
-
-  console.log("User Added!");
-    res.send("User Added!");
-    
+    const users = await User.find();
+    // console.log('issue');
+    res.send(users);
 }catch (err) {
     console.log(err);
     res.status(400).json('Error' + err)
