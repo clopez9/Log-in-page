@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './sign-up.css';
 
 export default class Login extends Component {
     constructor(props) {
@@ -37,30 +38,35 @@ export default class Login extends Component {
         console.log(user);
         axios.post('http://localhost:5000',user).then(res => console.log(res.data));
  
-        }
+    }
   
     componentDidMount() {
         this.setState({
             username: "",
             password: ""
-
         });
     }
     render() {
         return (
-<form onSubmit = {this.onSubmit}>
-<div className="container mt-4">
-  <div className="mb-3">
-    <label htmlFor="exampleInputusername" className="form-label">Username</label>
-    <input value={this.state.username} onChange={this.onChangeUsername} className="form-control" id="exampleInputUsername" aria-describedby="emailHelp"></input>
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input value={this.state.password} onChange={this.onChangePassword}  type="password" className="form-control" id="exampleInputPassword1"></input>
-  </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-  </div>
-</form>
+            <form onSubmit = {this.onSubmit}>
+                <div class="holder">
+                    <div className="container">
+                        <h2>SIGN-UP</h2>
+
+                            <div className="field">
+                                <label htmlFor="exampleInputusername" className="form-label">USERNAME</label>
+                                <input value={this.state.username} onChange={this.onChangeUsername} className="form-control" id="exampleInputUsername" aria-describedby="emailHelp"></input>
+                            </div>
+                            <div className="field">
+                                <label htmlFor="exampleInputPassword1" className="form-label">PASSWORD</label>
+                                <input value={this.state.password} onChange={this.onChangePassword}  type="password" className="form-control" id="exampleInputPassword1"></input>
+                            </div>
+                        <button type="submit" className="btn-sub">Sign-Up</button>
+                        <p>Already have an account? <Link to ="/signin">sign in</Link></p>
+                        <p><Link to="/dashboard">Dashboard</Link></p>
+                    </div>
+                </div>
+            </form>
 
 
         );
