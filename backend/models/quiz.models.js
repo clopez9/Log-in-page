@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 
 const quizSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        required: true
     },
     questions: {
-        type: Object
+        type: Array,
+        required: true
     },
 
 });

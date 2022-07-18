@@ -31,7 +31,7 @@ app.use('/', userRouter);
 ////
 
 const adminRouter = require(__dirname + '/routes/admin');
-app.use('/admin', adminRouter);
+app.use('/', adminRouter);
 
 app.listen(port, () => {
     console.log(`Server is runing on port: ${port}`);

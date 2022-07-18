@@ -19,7 +19,23 @@ const userSchema = new Schema({
         trim: true,
         minlength: 6,
         maxlength: 20
+    },
+    typeOfUser : {
+        type: String
+    },
+    quizDash: {
+        type: Boolean,
+        default: true
+    },
+    timer: {
+        type: Boolean,
+        default: false
+    },
+    maintenancePlan: {
+        type: Boolean,
+        default: false
     }
+
 });
 
 //This variable refers to our collection within our db
