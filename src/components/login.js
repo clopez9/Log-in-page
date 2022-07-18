@@ -17,7 +17,6 @@ export default class Login extends Component {
    
     }
     onChangeUsername(e) {
-        console.log(e);
         this.setState({
             username: e.target.value
         });
