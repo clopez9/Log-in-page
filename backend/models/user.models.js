@@ -21,8 +21,10 @@ const userSchema = new Schema({
         maxlength: 20
     },
     typeOfUser : {
-        type: String
+        type: String,
+        default: "standard"
     },
+    //These booleans will be used to customize the dashboard of each user.
     quizDash: {
         type: Boolean,
         default: true
