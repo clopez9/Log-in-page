@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import LiveQuiz from "./live-quizzes-admin";
 import axios from 'axios';
 import "./admin.css"
 
@@ -45,6 +46,8 @@ export default class Admin extends Component {
         return (
             <form onSubmit = {this.onSubmit}>
             <div className="container">
+                <LiveQuiz/>
+                <hr></hr>
                 <h1>Create a new quiz</h1>
                 <label htmlFor="quizTitle">Title</label>
                 <input onChange = {this.titleChange} id="quizTitle" type="text" ></input>

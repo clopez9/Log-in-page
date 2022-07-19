@@ -32,4 +32,14 @@ router.route('/admin').post( async (req,res) => {
         res.json('Error' + err);
     }
 });
+//get request for live quiz feed
+router.route('/admin/quiz').get(async (req,res) => {
+    
+    const quiz = await Quiz.find();
+    const quizTitles = []
+    for(let i = 0; i <quiz.length; i++) {
+        quizTitles.push(quiz[i].name);
+    }
+    res.send(quizTitles);
+})
 module.exports = router;
