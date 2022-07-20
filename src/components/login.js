@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Admin from "./admin";
+import Admin from "./admin-page/admin";
 import axios from 'axios';
 
 export default class Login extends Component {

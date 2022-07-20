@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Admin from "./admin";
+import "./live-quizzes-admin.css";
 import axios from 'axios';
 
+function deleteQuiz(props) {
+
+    console.log("trash");
+    axios.post("http://localhost:5000/admin/quiz/delete").then(function (response) {
+        
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+
+}
+function editQuiz() {
+    console.log("edit");
+}
 function Items(props) {
-    const numbers = props.numbers;
-    console.log("numbers");
-    console.log(numbers);
-    const listItems = numbers.map((number) =>    
+    const titles = props.quizTitle;
+    const listItems = titles.map((number) =>    
     <div><h4>{number}</h4>
-        <button>Delete</button>
-        <button>Edit</button></div>  );  return (
+        <i onClick = {deleteQuiz} class="fa-solid fa-trash-can"></i>
+        <i onClick = {editQuiz}class="fa-solid fa-pen"></i>
+    </div>  );  return (
       <div>{listItems}</div>  );
   }
         
@@ -37,22 +50,12 @@ export default class LiveQuiz extends Component {
           this.setState({
             quizArray: resData
         });
-
-        // const listItems = this.state.quizArray.map((quiz) => 
-        // <li>{quiz}</li>);
-        // console.log(listItems);
-        // this.setState({
-        //     listItems: listItems
-        // }, () => console.log(this.state.listItems))
-
-        
-
     }
     render () {
         return (
         <div>
             <h1>Live Quizzes</h1>
-            <Items numbers = {this.state.quizArray}/>
+            <Items quizTitle = {this.state.quizArray}/>
             
         </div>)
         

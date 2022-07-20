@@ -41,5 +41,10 @@ router.route('/admin/quiz').get(async (req,res) => {
         quizTitles.push(quiz[i].name);
     }
     res.send(quizTitles);
-})
+});
+
+router.route('/admin/quiz/delete').post(async (req,res) => {
+    
+ 
+});
 module.exports = router;

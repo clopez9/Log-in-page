@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/login.js";
-import Admin from "./components/admin.js"
+import Admin from "./components/admin-page/admin.js"
 
 function App() {
   return (
