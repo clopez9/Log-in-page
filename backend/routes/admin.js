@@ -26,7 +26,8 @@ router.route('/admin').post( async (req,res) => {
         });
         //adds new quiz to database
         await newQuiz.save();
-        console.log("New User Added!")
+        console.log("New Quiz Added!");
+        res.send("new quiz added!!!!");
         
     } catch (err) {
         res.json('Error' + err);
@@ -37,7 +38,7 @@ router.route('/admin/quiz').get(async (req,res) => {
     
     const quiz = await Quiz.find();
     const quizTitles = []
-    for(let i = 0; i <quiz.length; i++) {
+    for(let i = 0; i < quiz.length; i++) {
         quizTitles.push(quiz[i].name);
     }
     res.send(quizTitles);

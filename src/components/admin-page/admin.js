@@ -8,18 +8,35 @@ export default class Admin extends Component {
         super(props);
         this.state = {
             fileContent: "",
-            titleOfQuiz: ""
+            titleOfQuiz: "",
+            propsForLiveQuiz: []
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.titleChange = this.titleChange.bind(this);
 
     }
-    onSubmit(e) {
+    async onSubmit(e) {
+        let resData;
         e.preventDefault();
         const title = this.state.titleOfQuiz;
         const csv = this.state.fileContent;
-            axios.post('http://localhost:5000/admin', [csv, title]).then(res => console.log(res.data)).catch(err => console.log(err));
+           await axios.post('http://localhost:5000/admin', [csv, title]).then(res => {
+            console.log(res.data);
+
+           }).catch(err => console.log(err));
+           await axios.get("http://localhost:5000/admin/quiz").then(function (response) {
+            console.log("fetched quiz array")
+            resData = response.data;
+        
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          this.setState({
+            propsForLiveQuiz: resData
+
+          }, () => console.log("Call back for state:" + this.state.propsForLiveQuiz));
         
     }
    
@@ -45,7 +62,7 @@ export default class Admin extends Component {
     render () {
         return (
         <div>
-            <LiveQuiz/>
+            <LiveQuiz quizzes = {this.state.propsForLiveQuiz}/>
             <hr></hr>
         
             <form onSubmit = {this.onSubmit}>

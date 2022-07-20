@@ -35,10 +35,29 @@ export default class LiveQuiz extends Component {
             quizArray : []
         }
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("update");
+        console.log(this.props.quizzes);
+        console.log(prevProps.quizzes);
+        console.log(prevState.quizArray);
+        // if (prevProps.quizzes.length < this.state.quizArray.length) {
+        //     this.setState({
+
+
+        //     })
+        // } else {
+        //     return prevState;
+        // }
+        
+       
+
     }
  
  
     async componentDidMount () {
+        console.log("mount");
         let resData;
         await axios.get("http://localhost:5000/admin/quiz").then(function (response) {
             resData = response.data;
