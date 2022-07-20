@@ -3,21 +3,32 @@ import {Link} from "react-router-dom";
 import Admin from "./admin";
 import axios from 'axios';
 
+function Items(props) {
+    const numbers = props.numbers;
+    console.log("numbers");
+    console.log(numbers);
+    const listItems = numbers.map((number) =>    
+    <div><h4>{number}</h4>
+        <button>Delete</button>
+        <button>Edit</button></div>  );  return (
+      <div>{listItems}</div>  );
+  }
+        
+
 export default class LiveQuiz extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            quizArray : [],
-            listItems: []
+            quizArray : []
         }
         this.componentDidMount = this.componentDidMount.bind(this);
     }
  
  
     async componentDidMount () {
-        const resData = []
+        let resData;
         await axios.get("http://localhost:5000/admin/quiz").then(function (response) {
-            resData.push(response.data);
+            resData = response.data;
         
           })
           .catch(function (error) {
@@ -27,12 +38,12 @@ export default class LiveQuiz extends Component {
             quizArray: resData
         });
 
-        const listItems = this.state.quizArray.map((quiz) => 
-        <li>{quiz}</li>);
-        console.log(listItems);
-        this.setState({
-            listItems: listItems
-        }, () => console.log(this.state.listItems))
+        // const listItems = this.state.quizArray.map((quiz) => 
+        // <li>{quiz}</li>);
+        // console.log(listItems);
+        // this.setState({
+        //     listItems: listItems
+        // }, () => console.log(this.state.listItems))
 
         
 
@@ -41,7 +52,7 @@ export default class LiveQuiz extends Component {
         return (
         <div>
             <h1>Live Quizzes</h1>
-            <ul>{this.state.listItems}</ul>
+            <Items numbers = {this.state.quizArray}/>
             
         </div>)
         

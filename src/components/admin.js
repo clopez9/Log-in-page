@@ -44,10 +44,12 @@ export default class Admin extends Component {
     }
     render () {
         return (
+        <div>
+            <LiveQuiz/>
+            <hr></hr>
+        
             <form onSubmit = {this.onSubmit}>
-            <div className="container">
-                <LiveQuiz/>
-                <hr></hr>
+            <div className="">
                 <h1>Create a new quiz</h1>
                 <label htmlFor="quizTitle">Title</label>
                 <input onChange = {this.titleChange} id="quizTitle" type="text" ></input>
@@ -56,6 +58,7 @@ export default class Admin extends Component {
                 <button type="submit">Submit</button>
             </div>
             </form>
+        </div>
         )
     }
 }
