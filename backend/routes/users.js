@@ -3,9 +3,22 @@ let User = require("../models/user.models");
 
 router.route('/').get( async(req,res) => {
 try {
-    const users = await User.find();
-    // console.log('issue');
-    res.send(users);
+    console.log(req.query);
+    const users = await User.findOne({username: req.query.username});
+    if(req.query.username === users.username){
+        console.log('username is true');
+        if(req.query.password === users.password){
+            console.log('password is true');
+            res.send([users, true]);
+        } else {
+            console.log('password is incorrect');
+            console.log(users.password);
+            res.send([null, false]);
+        }
+    } else {
+        console.log('false');
+    }
+    
 }catch (err) {
     console.log(err);
     res.status(400).json('Error' + err)

@@ -62,7 +62,7 @@ export default class Login extends Component {
                                 <input value={this.state.password} onChange={this.onChangePassword}  type="password" className="form-control" id="exampleInputPassword1"></input>
                             </div>
                         <button type="submit" className="btn-sub">Sign-Up</button>
-                        <p>Already have an account? <Link to ="/signin">sign in</Link></p>
+                        <p>Already have an account? <Link to ="/signin">SIGN IN</Link></p>
                         <p><Link to="/dashboard">Dashboard</Link></p>
                     </div>
                 </div>
