@@ -29,7 +29,9 @@ connection.once('open', () => {
 const userRouter = require(__dirname + '/routes/users');
 app.use('/', userRouter);
 ////
-
+//router for quizzes
+const quizRouter = require(__dirname + '/routes/quizzes');
+app.use('/', quizRouter);
 
 app.listen(port, () => {
     console.log(`Server is runing on port: ${port}`);

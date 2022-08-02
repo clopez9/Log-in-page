@@ -1,27 +1,30 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #ededed;
+    box-sizing: border-box;
+    color: black;
+    text-align: center;
 }
 
-* {
+/* * {
     box-sizing: border-box;
     color: #333;
-}
+} */
 
-input, button {
+.form-control, #ls-btn {
     border: none;
     outline: none;
     background: none;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h2 {
+.ls-heading {
     width: 100%;
     font-size: 26px;
     text-align: center;
   }
 
-label {
+.form-label {
     display: block;
     width: 260px;
     margin: 25px auto 0;
@@ -32,7 +35,7 @@ p {
     text-align: center;
 }
 
-input {
+.form-control {
     display: block;
     width: 100%;
     margin-top: 5px;
@@ -42,7 +45,7 @@ input {
     text-align: center;
 }
 
-input:focus {
+.form-control:focus {
     border-bottom: 2px solid rgba(2,132,130,1);
 }
 
@@ -74,5 +77,5 @@ input:focus {
     background-color: #fefefe;
     margin: 10% auto 15% auto;
     border: 1px solid #888;
-    width: 30%;
+    width: 130%;
 }

@@ -17,11 +17,12 @@ try {
         }
     } else {
         console.log('false');
+        res.send([null, false]);
     }
     
 }catch (err) {
     console.log(err);
-    res.status(400).json('Error' + err)
+    res.status(400).json('Error' + err);
 
 }});
 
@@ -29,7 +30,8 @@ router.route('/').post( async (req,res) => {
     try {
         const newUser = User({
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            email: req.body.email
         });
         //this function saves the users to our database
         await newUser.save();

@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import './dashboard.css';
+//import './dashboard.css';
+import Card from 'react-bootstrap/Card';
+import { Button } from 'react-bootstrap';
 
 export default class Dashboard extends Component {
 
     render() {
         return (
             <div className='container'>
-                <div class="jumbo">
-                    <h1>Welcome { localStorage.getItem('currentUser') }</h1>
-                </div>
-                <Link to="/quiz"><div className='quiz-card'>
-                    <h2>Quiz</h2>
-                </div></Link>
-                <div className='score-card'>
-                    <h2>Scores</h2>
-                </div>
+                <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="holder.js/100px180" alt='some image goes here'/>
+                <Card.Body>
+                <Card.Title>Lean Six Sigma Quiz</Card.Title>
+                <Card.Text>
+                    Hey your about to enter the Lean Six Sigma Dashboard
+                </Card.Text>
+                <Link to='/quiz'><Button variant="primary">Lets Go!</Button></Link>
+                </Card.Body>
+                </Card>
             </div>
         );
     }
