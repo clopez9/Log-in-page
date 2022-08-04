@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import './sign-up.css';
 
 export default class Signin extends Component {
 
@@ -69,7 +70,7 @@ export default class Signin extends Component {
             signin = res.data[1];
         }
         );
-        await this.setState( {
+        this.setState( {
             validSignin: signin
         });   
     }
@@ -90,7 +91,7 @@ export default class Signin extends Component {
             <form onSubmit = {this.onSubmit}>
                 <div class="holder">
                     <div className="container">
-                        <h2>LOGIN</h2>
+                        <h2 className='ls-heading'>LOGIN</h2>
 
                             <div className="field">
                                 <label htmlFor="exampleInputusername" className="form-label">USERNAME</label>

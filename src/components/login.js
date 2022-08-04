@@ -9,10 +9,12 @@ export default class Login extends Component {
         super(props);
          this.state = {
             username: "",
-            password: ""
+            password: "",
+            email: ""
          }
          this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
    
@@ -27,13 +29,21 @@ export default class Login extends Component {
             password: e.target.value
         });
     }
+
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
     onSubmit(e) {
         //prevents submission of default values
         console.log("submitted!")
         e.preventDefault();
         const user = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            email: this.state.email
         }
         console.log(user);
         axios.post('http://localhost:5000',user).then(res => console.log(res.data));
@@ -43,15 +53,16 @@ export default class Login extends Component {
     componentDidMount() {
         this.setState({
             username: "",
-            password: ""
+            password: "",
+            email: ""
         });
     }
     render() {
         return (
             <form onSubmit = {this.onSubmit}>
-                <div class="holder">
+                <div className="holder">
                     <div className="container">
-                        <h2>SIGN-UP</h2>
+                        <h2 className='ls-heading'>SIGN-UP</h2>
 
                             <div className="field">
                                 <label htmlFor="exampleInputusername" className="form-label">USERNAME</label>
@@ -61,9 +72,14 @@ export default class Login extends Component {
                                 <label htmlFor="exampleInputPassword1" className="form-label">PASSWORD</label>
                                 <input value={this.state.password} onChange={this.onChangePassword}  type="password" className="form-control" id="exampleInputPassword1"></input>
                             </div>
+                            <div className='field'>
+                                <label htmlFor='exampleInputEmail' className='form-label'>EMAIL</label>
+                                <input value={this.state.email} onChange={this.onChangeEmail} className='form-control' id='exampleInputEmail'></input>
+                            </div>
                         <button type="submit" className="btn-sub">Sign-Up</button>
                         <p>Already have an account? <Link to ="/signin">SIGN IN</Link></p>
                         <p><Link to="/dashboard">Dashboard</Link></p>
+                        <p><Link to="/questions">Questions</Link></p>
                     </div>
                 </div>
             </form>
