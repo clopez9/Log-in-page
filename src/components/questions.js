@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './question.css';
 
 export default function GetQuestions() {
+    const [score, setScore] = useState(0);
+    const [showScore, setShowScore] = useState(false);
+    const [questionNumber, setQuestionNumber] = useState(0);
     const [questionArr, setQuestionArr] = useState([]);
     const [qSize, setQSize] = useState([]);
     const [questions, setQuestions] = useState([{
@@ -11,15 +20,17 @@ export default function GetQuestions() {
             answerChoices: [],
             indexOfAnswer: '',
         }]
-    }])
+    }]);
+    const [currentQuestion, setCurrentQuestion] = useState({
+        question: '',
+        answerChoices: [],
+        indexOfAnswer: '',
+    });
 
     const getQuestions = async () => {
         try {
-            console.log("2");
             await axios.get("http://localhost:5000/questionss").then(function (response) {
-                console.log(response.data)
                 setQuestions(response.data);
-                console.log(questions)
               }).catch(function (error) {
                 console.log(error);
               })
@@ -30,27 +41,22 @@ export default function GetQuestions() {
     };
 
     useEffect(()=> {
-        console.log("1");
         if(questions[0].name === "") {
-            console.log("rendered");
             getQuestions()
-            console.log("3");
-            setQSize(random(10));
+            setQSize(random(20));
 
         }    
         if (questions[0].name !== "") {
-            console.log("4");
             let arr = []
             for(let i=0; i < qSize.length; i++) {
-                console.log(questions[0])
-                arr.push(questions[0].questions[qSize[i]].question)
-    
+                arr.push(questions[0].questions[qSize[i]])
             }
-            console.log(arr);
-            const w = arr.map((q) => <li>{q}</li>);
-            console.log(w)
-            setQuestionArr(arr.map((q) => <li>{q}</li>));
-            console.log(questionArr);
+            setQuestionArr(arr.map((q) => q.question));
+        }
+        if(qSize.length !== 0 && questions[0].questions.length > 1 ){
+            const index = qSize[questionNumber];
+            setCurrentQuestion(questions[0].questions[index]);
+
         }
         
     },[questions]);
@@ -60,14 +66,52 @@ export default function GetQuestions() {
         return ran;
     }
 
-    //let qSize = random(10);
+    function handleAnswerButtonClick(choice) {
+        let id = currentQuestion.indexOfAnswer;
+        if(questionNumber < qSize.length-1){
+            if(choice === currentQuestion.answerChoices[id]){
+                setScore(score + 1);
+                setQuestionNumber(questionNumber + 1);
+                setCurrentQuestion(questions[0].questions[qSize[questionNumber]]);
+                alert('correct');
+            } else {
+                setQuestionNumber(questionNumber + 1);
+                setCurrentQuestion(questions[0].questions[qSize[questionNumber]]);
+                alert('incorrect');
+            } 
+        } else {
+            if(choice === currentQuestion.answerChoices[id]){
+                setScore(score + 1);
+                setShowScore(true);
+            } else {
+                setShowScore(true);
+            }
+        }
+             
+    }
 
     return (
         <div className="app">
-            <h1>Quiz Titles</h1>
-            <ul>
-                <ul>{questionArr}</ul>
-            </ul>
+            {showScore ? (
+                <div className='score-section'>
+					You scored {score} out of {questionArr.length}
+				</div>
+                ) : (
+                    <>
+                    <div className="question-section">
+                        <div className="question-count">
+                            <span>Question {questionNumber + 1}</span>/{questionArr.length}
+                        </div>
+                        <div className='question-text'>{questionArr[questionNumber]}</div>
+                    </div>
+                    <div className="answer-section">
+                    {currentQuestion.answerChoices.map((answerChoices, index) => (
+		                <button onClick={() => handleAnswerButtonClick(answerChoices)}>{answerChoices}</button>
+	                ))}
+                    </div>
+                    </>
+                )}
+            
         </div>
     );
 }

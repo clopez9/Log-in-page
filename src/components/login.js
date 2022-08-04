@@ -79,7 +79,6 @@ export default class Login extends Component {
                         <button type="submit" className="btn-sub">Sign-Up</button>
                         <p>Already have an account? <Link to ="/signin">SIGN IN</Link></p>
                         <p><Link to="/dashboard">Dashboard</Link></p>
-                        <p><Link to="/question">Question</Link></p>
                         <p><Link to="/questions">Questions</Link></p>
                     </div>
                 </div>

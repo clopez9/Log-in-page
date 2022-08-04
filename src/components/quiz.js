@@ -65,8 +65,17 @@ export default class Quiz extends Component {
         //const items = titles.map((object) => <option>value={object._id} label= {object.name}</option>)
         return (  
                 <form onSubmit = {this.onSubmit}>
+                    <div background-color="white">
+                        <h3>Quiz Template</h3>
+                        <div>
+                            <Select>
+                                <options label='quizsize'/>
+                            </Select>
+                        </div>
+                    </div>
                     
                 <Select onChange={this._handleChange} options={ options } />
+                <Select />
                 <div>
                     <Button variant="primary" type="submit">SUBMIT</Button>
                 </div>
